@@ -5,19 +5,19 @@ A comprehensive C program using the Advanced Encryption Standard (AES) for encry
 ### Prerequisites
 
 **Install the OpenSSL library.**
-- On Linux: sudo apt install libssl-dev
-- On macOS: brew install openssl
+- On Linux: `sudo apt install libssl-dev`
+- On macOS: `brew install openssl`
 - On Windows: Use a package like vcpkg or install OpenSSL manually.
 
 Compilation Commands
 Linux/macOS bash
-'gcc -o aes_encryptor aes_encryptor.c -lssl -lcrypto'
+`gcc -o aes_encryptor aes_encryptor.c -lssl -lcrypto`
 
 Windows (using MinGW) bash
-'gcc -o aes_encryptor aes_encryptor.c -lssl -lcrypto -lws2_32'
+`gcc -o aes_encryptor aes_encryptor.c -lssl -lcrypto -lws2_32`
 
 Run the Program
-'./aes_encryptor'
+`./aes_encryptor`
 
 ### How the Program Works
 **Encryption**
