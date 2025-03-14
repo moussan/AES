@@ -91,6 +91,31 @@ npm start
 yarn start
 ```
 
+## Deployment
+
+### GitHub Pages
+
+This project is configured for easy deployment to GitHub Pages:
+
+1. Push your changes to the main branch
+2. GitHub Actions will automatically build and deploy your site
+3. Your site will be available at `https://yourusername.github.io/AES`
+
+To deploy manually:
+
+```bash
+npm run build
+npm run export
+```
+
+This will generate a static version of your site in the `out` directory, which you can deploy to any static hosting service.
+
+### Other Hosting Options
+
+- **Vercel**: Optimal for Next.js projects with zero configuration
+- **Netlify**: Great for static sites with additional features like forms
+- **AWS Amplify**: Good for projects that need additional AWS services
+
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
