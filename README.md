@@ -1,46 +1,114 @@
-# AES
-A comprehensive C program using the Advanced Encryption Standard (AES) for encryption and decryption. The program includes a menu-driven interface, detailed comments, and instructions for compiling and running it on Linux, Windows, or macOS.
+# CryptoVisualizer
 
-## Instructions to Compile and Run
+CryptoVisualizer is an interactive web application that visualizes encryption algorithms, cryptographic concepts, and data structures. The application provides step-by-step animations and explanations to help users understand how these algorithms work.
+
+## Features
+
+- Interactive visualizations of encryption algorithms
+- Step-by-step explanations of cryptographic processes
+- Detailed information about various encryption methods
+- Real-time encryption and decryption using actual algorithms
+- Modern, responsive UI with dark mode support
+
+## Algorithms and Concepts
+
+The application currently includes visualizations for:
+
+- **AES (Advanced Encryption Standard)** - A symmetric block cipher used for secure data encryption
+- RSA (Rivest–Shamir–Adleman) - Coming soon
+- SHA (Secure Hash Algorithms) - Coming soon
+- Data structures like Binary Trees and Hash Tables - Coming soon
+
+## Getting Started
+
 ### Prerequisites
 
-**Install the OpenSSL library.**
-- On Linux: `sudo apt install libssl-dev`
-- On macOS: `brew install openssl`
-- On Windows: Use a package like vcpkg or install OpenSSL manually.
+- Node.js (v14 or later)
+- npm or yarn
 
-Compilation Commands
-Linux/macOS bash
-`gcc -o aes_encryptor aes_encryptor.c -lssl -lcrypto`
+### Installation
 
-Windows (using MinGW) bash
-`gcc -o aes_encryptor aes_encryptor.c -lssl -lcrypto -lws2_32`
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/crypto-visualizer.git
+   cd crypto-visualizer
+   ```
 
-Run the Program
-`./aes_encryptor`
+2. Install dependencies:
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
 
-### How the Program Works
-**Encryption**
+3. Start the development server:
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
 
-Takes plaintext from the user.
-Encrypts it using AES-256-CBC.
-Outputs the ciphertext in hexadecimal format.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
 
-**Decryption**
+## Project Structure
 
-Takes hex-encoded ciphertext from the user.
-Decrypts it using the same AES-256-CBC algorithm.
-Outputs the original plaintext.
+```
+crypto-visualizer/
+├── public/             # Static assets
+├── src/
+│   ├── components/     # React components
+│   ├── pages/          # Next.js pages
+│   ├── styles/         # Global styles
+│   └── utils/          # Utility functions
+├── package.json        # Project dependencies and scripts
+└── README.md           # Project documentation
+```
 
-**Key and IV**
+## Technologies Used
 
-Hardcoded for simplicity. In production, generate keys and IVs securely.
+- **Next.js** - React framework for server-rendered applications
+- **React** - JavaScript library for building user interfaces
+- **TypeScript** - Typed superset of JavaScript
+- **Tailwind CSS** - Utility-first CSS framework
+- **Framer Motion** - Animation library for React
+- **Crypto-JS** - JavaScript library of crypto standards
 
-**Customization**
-Replace the generate_key function to securely generate and store keys using a KMS or secure key management system.
-Add more robust error handling and validations.
+## Development
 
-Let me know if you need enhancements or further assistance!
+### Building for Production
+
+```bash
+npm run build
+# or
+yarn build
+```
+
+### Running Production Build
+
+```bash
+npm start
+# or
+yarn start
+```
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+
+- This project was inspired by the original AES encryption demo in C
+- Special thanks to the cryptography community for their educational resources
 
 
 

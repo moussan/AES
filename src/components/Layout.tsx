@@ -28,6 +28,11 @@ const algorithms: NavItem[] = [
 
 const dataStructures: NavItem[] = [
   {
+    name: 'All Data Structures',
+    href: '/data-structures',
+    description: 'Overview of all data structures',
+  },
+  {
     name: 'Binary Trees',
     href: '/data-structures/binary-trees',
     description: 'Hierarchical data structures',
@@ -36,6 +41,16 @@ const dataStructures: NavItem[] = [
     name: 'Hash Tables',
     href: '/data-structures/hash-tables',
     description: 'Key-value data structures',
+  },
+  {
+    name: 'Linked Lists',
+    href: '/data-structures/linked-lists',
+    description: 'Sequential data structures',
+  },
+  {
+    name: 'Graphs',
+    href: '/data-structures/graphs',
+    description: 'Network data structures',
   },
 ];
 
@@ -46,6 +61,8 @@ type LayoutProps = {
 export default function Layout({ children }: LayoutProps) {
   const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [dataStructuresDropdownOpen, setDataStructuresDropdownOpen] = useState(false);
+  const [algorithmsDropdownOpen, setAlgorithmsDropdownOpen] = useState(false);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -60,26 +77,102 @@ export default function Layout({ children }: LayoutProps) {
               </Link>
             </div>
             <div className="hidden md:flex md:space-x-8">
-              <Link 
-                href="/algorithms" 
-                className={`text-base font-medium ${
-                  router.pathname.startsWith('/algorithms') 
-                    ? 'text-primary-600 dark:text-primary-400' 
-                    : 'text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
-                }`}
-              >
-                Algorithms
-              </Link>
-              <Link 
-                href="/data-structures" 
-                className={`text-base font-medium ${
-                  router.pathname.startsWith('/data-structures') 
-                    ? 'text-primary-600 dark:text-primary-400' 
-                    : 'text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
-                }`}
-              >
-                Data Structures
-              </Link>
+              {/* Algorithms Dropdown */}
+              <div className="relative">
+                <button
+                  type="button"
+                  className={`text-base font-medium inline-flex items-center ${
+                    router.pathname.startsWith('/algorithms') 
+                      ? 'text-primary-600 dark:text-primary-400' 
+                      : 'text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
+                  }`}
+                  onClick={() => {
+                    setAlgorithmsDropdownOpen(!algorithmsDropdownOpen);
+                    setDataStructuresDropdownOpen(false);
+                  }}
+                >
+                  Algorithms
+                  <svg 
+                    className={`ml-2 h-5 w-5 transition-transform ${algorithmsDropdownOpen ? 'transform rotate-180' : ''}`} 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    viewBox="0 0 20 20" 
+                    fill="currentColor"
+                  >
+                    <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                  </svg>
+                </button>
+                
+                {algorithmsDropdownOpen && (
+                  <div className="absolute z-10 mt-2 w-56 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5">
+                    <div className="py-1" role="menu" aria-orientation="vertical">
+                      {algorithms.map((item) => (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          className={`block px-4 py-2 text-sm ${
+                            router.pathname === item.href
+                              ? 'bg-gray-100 dark:bg-gray-700 text-primary-600 dark:text-primary-400'
+                              : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
+                          }`}
+                          onClick={() => setAlgorithmsDropdownOpen(false)}
+                        >
+                          <div className="font-medium">{item.name}</div>
+                          <div className="text-xs text-gray-500 dark:text-gray-400">{item.description}</div>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+              
+              {/* Data Structures Dropdown */}
+              <div className="relative">
+                <button
+                  type="button"
+                  className={`text-base font-medium inline-flex items-center ${
+                    router.pathname.startsWith('/data-structures') 
+                      ? 'text-primary-600 dark:text-primary-400' 
+                      : 'text-gray-500 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white'
+                  }`}
+                  onClick={() => {
+                    setDataStructuresDropdownOpen(!dataStructuresDropdownOpen);
+                    setAlgorithmsDropdownOpen(false);
+                  }}
+                >
+                  Data Structures
+                  <svg 
+                    className={`ml-2 h-5 w-5 transition-transform ${dataStructuresDropdownOpen ? 'transform rotate-180' : ''}`} 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    viewBox="0 0 20 20" 
+                    fill="currentColor"
+                  >
+                    <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                  </svg>
+                </button>
+                
+                {dataStructuresDropdownOpen && (
+                  <div className="absolute z-10 mt-2 w-56 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5">
+                    <div className="py-1" role="menu" aria-orientation="vertical">
+                      {dataStructures.map((item) => (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          className={`block px-4 py-2 text-sm ${
+                            router.pathname === item.href
+                              ? 'bg-gray-100 dark:bg-gray-700 text-primary-600 dark:text-primary-400'
+                              : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
+                          }`}
+                          onClick={() => setDataStructuresDropdownOpen(false)}
+                        >
+                          <div className="font-medium">{item.name}</div>
+                          <div className="text-xs text-gray-500 dark:text-gray-400">{item.description}</div>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+              
               <Link 
                 href="/about" 
                 className={`text-base font-medium ${
@@ -116,28 +209,96 @@ export default function Layout({ children }: LayoutProps) {
         {mobileMenuOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              <Link 
-                href="/algorithms" 
-                className={`block px-3 py-2 rounded-md text-base font-medium ${
-                  router.pathname.startsWith('/algorithms') 
-                    ? 'bg-primary-50 text-primary-600 dark:bg-gray-700 dark:text-primary-400' 
-                    : 'text-gray-500 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-700'
-                }`}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Algorithms
-              </Link>
-              <Link 
-                href="/data-structures" 
-                className={`block px-3 py-2 rounded-md text-base font-medium ${
-                  router.pathname.startsWith('/data-structures') 
-                    ? 'bg-primary-50 text-primary-600 dark:bg-gray-700 dark:text-primary-400' 
-                    : 'text-gray-500 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-700'
-                }`}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Data Structures
-              </Link>
+              {/* Mobile Algorithms Dropdown */}
+              <div>
+                <button
+                  type="button"
+                  className={`w-full flex justify-between items-center px-3 py-2 rounded-md text-base font-medium ${
+                    router.pathname.startsWith('/algorithms') 
+                      ? 'bg-primary-50 text-primary-600 dark:bg-gray-700 dark:text-primary-400' 
+                      : 'text-gray-500 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-700'
+                  }`}
+                  onClick={() => setAlgorithmsDropdownOpen(!algorithmsDropdownOpen)}
+                >
+                  Algorithms
+                  <svg 
+                    className={`ml-2 h-5 w-5 transition-transform ${algorithmsDropdownOpen ? 'transform rotate-180' : ''}`} 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    viewBox="0 0 20 20" 
+                    fill="currentColor"
+                  >
+                    <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                  </svg>
+                </button>
+                
+                {algorithmsDropdownOpen && (
+                  <div className="pl-4 pr-2 py-2 space-y-1">
+                    {algorithms.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className={`block px-3 py-2 rounded-md text-sm font-medium ${
+                          router.pathname === item.href
+                            ? 'bg-gray-100 dark:bg-gray-700 text-primary-600 dark:text-primary-400'
+                            : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
+                        }`}
+                        onClick={() => {
+                          setAlgorithmsDropdownOpen(false);
+                          setMobileMenuOpen(false);
+                        }}
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+              
+              {/* Mobile Data Structures Dropdown */}
+              <div>
+                <button
+                  type="button"
+                  className={`w-full flex justify-between items-center px-3 py-2 rounded-md text-base font-medium ${
+                    router.pathname.startsWith('/data-structures') 
+                      ? 'bg-primary-50 text-primary-600 dark:bg-gray-700 dark:text-primary-400' 
+                      : 'text-gray-500 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-700'
+                  }`}
+                  onClick={() => setDataStructuresDropdownOpen(!dataStructuresDropdownOpen)}
+                >
+                  Data Structures
+                  <svg 
+                    className={`ml-2 h-5 w-5 transition-transform ${dataStructuresDropdownOpen ? 'transform rotate-180' : ''}`} 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    viewBox="0 0 20 20" 
+                    fill="currentColor"
+                  >
+                    <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                  </svg>
+                </button>
+                
+                {dataStructuresDropdownOpen && (
+                  <div className="pl-4 pr-2 py-2 space-y-1">
+                    {dataStructures.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        className={`block px-3 py-2 rounded-md text-sm font-medium ${
+                          router.pathname === item.href
+                            ? 'bg-gray-100 dark:bg-gray-700 text-primary-600 dark:text-primary-400'
+                            : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
+                        }`}
+                        onClick={() => {
+                          setDataStructuresDropdownOpen(false);
+                          setMobileMenuOpen(false);
+                        }}
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+              
               <Link 
                 href="/about" 
                 className={`block px-3 py-2 rounded-md text-base font-medium ${
